@@ -1,26 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WanderLust</title>
-</head>
+<% layout("/layouts/boilerplate.ejs") %>
+
 <body>
-    <h1>Add New Listings</h1>
-    <form method="POST" action="/listings">
-        <input name="listing[title]" placeholder="Title" type="text"/>
-        <br><br>
-        <textarea name="listing[description]" placeholder="Description"></textarea>
-        <br><br>
-        <input name="listing[image]" placeholder="Image CDN" type="text"/>
-        <br><br>
-        <input name="listing[price]" placeholder="Price" type="number"/>
-        <br><br>
-        <input name="listing[location]" placeholder="Location" type="text"/>
-        <br><br>
-        <input name="listing[country]" placeholder="Country" type="text"/>
-        <br><br>
-        <button>Add Listing</button>
+    <div class="container p-lg-5 m-0">
+    <div class="container p-lg-5 m-0">
+        <h1 class="mb-4">Create a New Listing</h1>
+    <form class="mt-2" method="POST" action="/listings">
+        <div class="input-group mb-3">
+            <span class="input-group-text">Title</span>
+            <input type="text" name="listing[title]" class="form-control">
+          </div>
+
+        <div class="input-group mb-3">
+            <span class="input-group-text">Description</span>
+            <textarea class="form-control" aria-label="With textarea" name="listing[description]"></textarea>
+        </div>
+
+        <div class="input-group mb-3">
+            <span class="input-group-text">Image CDN</span>
+            <input type="text" name="listing[image]" class="form-control">
+          </div>
+
+        <div class="input-group mb-3">
+            <span class="input-group-text">&#8377;/ Night</span>
+            <input type="number" name="listing[price]" class="form-control">
+          </div>
+
+          <div class="row mb-3">
+            <div class="col-lg-6 col-sm-1">
+
+                  <div class="input-group">
+                    <span class="input-group-text">Location</span>
+                    <textarea class="form-control" aria-label="With textarea" name="listing[location]"></textarea>
+                </div>
+            </div>
+            <div class="col-lg-6 col-sm-1">
+                <div class="input-group mb-3">
+                    <span class="input-group-text">Country</span>
+                    <input type="text" name="listing[country]" class="form-control">
+                  </div>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-dark wl-btn mb-3">Add Listings</button>
     </form>
+</div></div>
 </body>
-</html>
