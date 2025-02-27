@@ -53,11 +53,16 @@ app.get("/listings/:id", async (req, res) => {
   });
 
 // Create Route
-app.post("/listings", async (req,res) => {
-    // let {title, description, image, price, country, location} = req.body;
-    const newListing = new Listing(req.body.listing);
-    await newListing.save();
-    res.redirect("/listings");
+app.post("/listings", async (req,res, next) => {
+    try{
+        const newListing = new Listing(req.body.listing);
+        await newListing.save();
+        res.redirect("/listings");
+    }
+    catch(err){
+        next(err);
+    }
+
 })
 
 //Edit Route
@@ -87,7 +92,7 @@ app.delete("/listings/:id", async (req,res) => {
 // app.get('/testListing' , async (req , res)=>{
 //    const sampleListing = new Listing({
 //     title: "My Villa",
-//     description: "Beach view villa in goa",
+//     description: "Beach view vilAla in goa",
 //     price: 1499,
 //     location: "Calangute Goa",
 //     country: "India",
@@ -98,6 +103,12 @@ app.delete("/listings/:id", async (req,res) => {
 //    res.send("Successful Testing");
 // });
 
+
+// Middleware
+app.use((err, req, res, next) => {
+    res.send("Something went wrong!");
+});
+
 app.listen(8080, () => {
     console.log("Server is running on 8080 port");
-})
+});

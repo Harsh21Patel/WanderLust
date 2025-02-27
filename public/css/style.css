@@ -62,7 +62,13 @@ height: 4rem;
 .wl-btn {
     background-color: #fe424d !important;
     border: none !important;
-    font-size: 1.2rem !important;
+    font-size: 1.1rem !important;
+}
+
+.wl-btn2 {
+    background-color: #181717 !important;
+    border: none !important;
+    font-size: 1.1rem !important;
 }
 
 /* Card effects */
@@ -74,6 +80,18 @@ height: 4rem;
 .card-img-overlay:hover {
     opacity: 0.2;
     background-color: white;
+}
+
+.show-img{
+    height: 60vh;
+}
+
+
+@media (max-width: 768px) { 
+    .show-img{
+        height: 30vh;
+    }
+    
 }
 
 

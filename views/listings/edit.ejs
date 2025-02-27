@@ -1,26 +1,102 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WanderLust</title>
-</head>
+<% layout("/layouts/boilerplate.ejs") %>
+
 <body>
-    <h1>Edit Listings</h1>
-    <form method="POST" action="/listings/<%= listing._id %>?_method=PUT">
-        <input name="listing[title]" value="<%= listing.title %>" type="text"/>
-        <br><br>
-        <textarea name="listing[description]"><%= listing.description %></textarea>
-        <br><br>
-        <!-- <input name="listing[image]" value="<%= listing.image %>" type="text"/> -->
-        <br><br>
-        <input name="listing[price]" value="<%= listing.price %>" type="number"/>
-        <br><br>
-        <input name="listing[location]" value="<%= listing.location %>" type="text"/>
-        <br><br>
-        <input name="listing[country]" value="<%= listing.country %>" type="text"/>
-        <br><br>
-        <button>Edit Listing</button>
-    </form>
+  <div class="container p-lg-5 m-0">
+    <div class="container p-lg-5 m-0">
+      <h1 class="mb-4">Edit your Listing</h1>
+      <form
+        class="mt-2 needs-validation"
+        method="POST"
+        action="/listings/<%= listing._id %>?_method=PUT"
+        novalidate
+      >
+        <div class="input-group mb-3">
+          <span class="input-group-text">Title</span>
+          <input
+            type="text"
+            name="listing[title]"
+            value="<%= listing.title %>"
+            class="form-control"
+            required
+          />
+          <div class="invalid-feedback">Please enter a title.</div>
+          <div class="valid-feedback">Title looks good!</div>
+        </div>
+
+        <div class="input-group mb-3">
+          <span class="input-group-text">Description</span>
+          <textarea class="form-control" aria-label="With textarea" required>
+<%= listing.description %></textarea
+          >
+          <div class="invalid-feedback">Please provide a description.</div>
+          <div class="valid-feedback">Description is valid.</div>
+        </div>
+
+        <div class="input-group mb-3">
+          <span class="input-group-text">Image CDN</span>
+          <input
+            type="text"
+            name="listing[image]"
+            value="<%= listing.image %>"
+            class="form-control"
+            required
+          />
+          <div class="invalid-feedback">Please enter an image URL.</div>
+          <div class="valid-feedback">Image URL is correct.</div>
+        </div>
+
+        <div class="input-group mb-3">
+          <span class="input-group-text">&#8377;/ Night</span>
+          <input
+            type="number"
+            name="listing[price]"
+            value="<%= listing.price %>"
+            class="form-control"
+            required
+          />
+          <div class="invalid-feedback">
+            Please enter the per night charges.
+          </div>
+          <div class="valid-feedback">Per night charges are set.</div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-lg-6 col-sm-1">
+            <div class="input-group">
+              <span class="input-group-text">Location</span>
+              <textarea
+                class="form-control"
+                aria-label="With textarea"
+                name="listing[location]"
+                required
+              >
+<%= listing.location %></textarea
+              >
+
+              <div class="invalid-feedback">Please provide a location.</div>
+              <div class="valid-feedback">Location is valid.</div>
+            </div>
+          </div>
+          <div class="col-lg-6 col-sm-1">
+            <div class="input-group mb-3">
+              <span class="input-group-text">Country</span>
+              <input
+                type="text"
+                name="listing[country]"
+                value="<%= listing.country %>"
+                class="form-control"
+                required
+              />
+              <div class="valid-feedback">Country selection is valid.</div>
+              <div class="invalid-feedback">Please select a country.</div>
+            </div>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-dark wl-btn mb-3">
+          Edit Listing
+        </button>
+      </form>
+    </div>
+  </div>
 </body>
-</html>

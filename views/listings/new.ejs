@@ -1,47 +1,99 @@
 <% layout("/layouts/boilerplate.ejs") %>
 
 <body>
+  <div class="container p-lg-5 m-0">
     <div class="container p-lg-5 m-0">
-    <div class="container p-lg-5 m-0">
-        <h1 class="mb-4">Create a New Listing</h1>
-    <form class="mt-2" method="POST" action="/listings">
+      <h1 class="mb-4">Create a New Listing</h1>
+      <form
+        class="mt-2 needs-validation"
+        method="POST"
+        action="/listings"
+        novalidate
+      >
         <div class="input-group mb-3">
-            <span class="input-group-text">Title</span>
-            <input type="text" name="listing[title]" class="form-control">
-          </div>
-
-        <div class="input-group mb-3">
-            <span class="input-group-text">Description</span>
-            <textarea class="form-control" aria-label="With textarea" name="listing[description]"></textarea>
+          <span class="input-group-text">Title</span>
+          <input
+            type="text"
+            name="listing[title]"
+            class="form-control"
+            required
+          />
+          <div class="invalid-feedback">Please enter a title.</div>
+          <div class="valid-feedback">Title looks good!</div>
         </div>
 
         <div class="input-group mb-3">
-            <span class="input-group-text">Image CDN</span>
-            <input type="text" name="listing[image]" class="form-control">
-          </div>
+          <span class="input-group-text">Description</span>
+          <textarea
+            class="form-control"
+            aria-label="With textarea"
+            name="listing[description]"
+            required
+          ></textarea>
+          <div class="invalid-feedback">Please provide a description.</div>
+          <div class="valid-feedback">Description is valid.</div>
+        </div>
 
         <div class="input-group mb-3">
-            <span class="input-group-text">&#8377;/ Night</span>
-            <input type="number" name="listing[price]" class="form-control">
+          <span class="input-group-text">Image CDN</span>
+          <input
+            type="text"
+            name="listing[image]"
+            class="form-control"
+            required
+          />
+          <div class="invalid-feedback">Please enter an image URL.</div>
+          <div class="valid-feedback">Image URL is correct.</div>
+        </div>
+
+        <div class="input-group mb-3">
+          <span class="input-group-text">&#8377;/ Night</span>
+          <input
+            type="number"
+            name="listing[price]"
+            class="form-control"
+            required
+          />
+          <div class="invalid-feedback">
+            Please enter the per night charges.
           </div>
+          <div class="valid-feedback">Per night charges are set.</div>
+        </div>
 
-          <div class="row mb-3">
-            <div class="col-lg-6 col-sm-1">
+        <div class="row mb-3">
+          <div class="col-lg-6 col-sm-1">
+            <div class="input-group">
+              <span class="input-group-text">Location</span>
+              <textarea
+                class="form-control"
+                aria-label="With textarea"
+                name="listing[location]"
+                required
+              ></textarea>
 
-                  <div class="input-group">
-                    <span class="input-group-text">Location</span>
-                    <textarea class="form-control" aria-label="With textarea" name="listing[location]"></textarea>
-                </div>
-            </div>
-            <div class="col-lg-6 col-sm-1">
-                <div class="input-group mb-3">
-                    <span class="input-group-text">Country</span>
-                    <input type="text" name="listing[country]" class="form-control">
-                  </div>
+              <div class="invalid-feedback">Please provide a location.</div>
+              <div class="valid-feedback">Location is valid.</div>
             </div>
           </div>
+          <div class="col-lg-6 col-sm-1">
+            <div class="input-group mb-3">
+              <span class="input-group-text">Country</span>
+              <input
+                type="text"
+                name="listing[country]"
+                class="form-control"
+                required
+              />
+              <div class="valid-feedback">Country selection is valid.</div>
+              <div class="invalid-feedback">Please select a country.</div>
+            </div>
+          </div>
+        </div>
 
-          <button type="submit" class="btn btn-dark wl-btn mb-3">Add Listings</button>
-    </form>
-</div></div>
+        <button type="submit" class="btn btn-dark wl-btn mb-3">
+          Add Listings
+        </button>
+      </form>
+    </div>
+  </div>
 </body>
