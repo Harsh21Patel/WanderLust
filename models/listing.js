@@ -14,7 +14,10 @@ const listingSchema = new Schema({
         type: String,
         required: true,
     },
-    price: Number,
+    price: {
+        type: Number,
+        required: true,
+    },
     location: {
         type: String,
         required: true,
@@ -23,6 +26,12 @@ const listingSchema = new Schema({
         type: String,
         required: true,
     },
+    reviews: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: "Review",
+        }
+    ]
 });
 
 const Listing = mongoose.model("Listing", listingSchema);
