@@ -15,3 +15,5 @@ WanderLust is a simple Airbnb clone built using MongoDB, Node.js, Express, and E
 - 🖥️ **Template Engine:** EJS
 - 🔐 **Authentication:** Passport.js (for user login)
 
+## 🔥 Demo
+[![WanderLust](https://ibb.co/wFL2WFrK)]()
