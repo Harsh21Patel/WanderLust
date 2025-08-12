@@ -7,10 +7,14 @@ const ejsMate = require("ejs-mate");
 const ExpressError = require("./utils/ExpressError.js");
 const session = require("express-session");
 const flash = require("connect-flash");
+const passport = require("passport");
+const LocalStrategy = require("passport-local");
+const User = require("./models/user.js");
 
 // Routers
-const listings = require("./routes/listing.js");  
-const reviews = require("./routes/review.js");
+const listingRouter = require("./routes/listing.js");  
+const reviewRouter = require("./routes/review.js");
+const userRouter = require("./routes/user.js");
 
 // Mongo
 const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust";
@@ -52,11 +56,20 @@ const sessionOptions = {
 
 // Root Path
 app.get("/", (req, res) => {
-    res.send('<h1>Hello i`m root!</h1>')
+    res.send('<h1>Hello i`m root!</h1>');
 });
 
+// Middleware Session
 app.use(session(sessionOptions));
 app.use(flash());
+
+// Passport 
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 app.use((req, res, next) => {
     res.locals.success = req.flash("success");
@@ -64,18 +77,29 @@ app.use((req, res, next) => {
     next();
 });
 
+// Demo user for passport testing
+// app.get("/addfakeuser", async (req, res) => {
+//     let fakeUser = new User({
+//         email: "ceo@wanderlust.com",
+//         username: "ceo"
+//     });
+
+//     let registeredUser = await User.register(fakeUser, "password");
+//     res.send(registeredUser);
+// })
+
 // Listing Routes
-app.use("/listings", listings);
+app.use("/listings", listingRouter);
 
 // Review Routes
-app.use("/listings/:id/reviews", reviews);
+app.use("/listings/:id/reviews", reviewRouter);
 
+// User Router
+app.use("/", userRouter);
 
 app.all("*", (req, res, next) => {
     next(new ExpressError(404, "Page Not Found!"));
 });
-
-
 
 // Middleware error handler
 app.use((err, req, res, next) => {
